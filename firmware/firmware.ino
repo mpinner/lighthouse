@@ -38,21 +38,24 @@
 #define IR6 22
 #define IR7 23
 
+// my lightsources from https://github.com/mpinner/openvr/tree/master/samples/hellovr_opengl
+static lightsource lightsource1 = {
+    { 0.779680, 0.024346, -0.625704,
+      -0.178665, 0.966355, -0.185031,
+      0.600148, 0.256057, 0.757798},
+    { 1.560562, 2.315096, 1.997607}
+};
+static lightsource lightsource2 = {
+    { -0.574520, 0.059408, 0.816332,
+      0.234097, 0.967626, 0.094335,
+      -0.784299, 0.245298, -0.569827},
+    { -2.016330, 2.295804, -1.532343}
+};
+
 
 // Lighthouse sources rotation matrix & 3d-position
 // needs to be computed and read from EEPROM instead of constant.
-static lightsource lightsources[2] = {{
-    {  -0.88720f,  0.25875f, -0.38201f,
-       -0.04485f,  0.77566f,  0.62956f,
-        0.45920f,  0.57568f, -0.67656f},
-    {  -1.28658f,  2.32719f, -2.04823f}
-}, {
-    {   0.52584f, -0.64026f,  0.55996f,
-        0.01984f,  0.66739f,  0.74445f,
-       -0.85035f, -0.38035f,  0.36364f},
-    {   1.69860f,  2.62725f,  0.92969f}
-}};
-
+static lightsource lightsources[2] = {lightsource2, lightsource1};
 
 LighthouseSensor sensors[4];
 LighthouseXYZ xyz[4];
@@ -60,9 +63,9 @@ LighthouseXYZ xyz[4];
 void setup()
 {
 	sensors[0].begin(0, IR0, IR1);
-	sensors[1].begin(1, IR2, IR3);
-	sensors[2].begin(2, IR4, IR5);
-	sensors[3].begin(3, IR6, IR7);
+	//sensors[1].begin(1, IR2, IR3);
+	sensors[1].begin(2, IR4, IR5);
+	//sensors[3].begin(3, IR6, IR7);
 
 	for(int i = 0 ; i < 4 ; i++)
 		xyz[i].begin(i, &lightsources[0], &lightsources[1]);
@@ -73,7 +76,7 @@ void setup()
 
 void loop()
 {
-	for(int i = 0 ; i < 4 ; i++)
+	for(int i = 0 ; i < 2 ; i++)
 	{
 		LighthouseSensor * const s = &sensors[i];
 		LighthouseXYZ * const p = &xyz[i];
@@ -86,7 +89,7 @@ void loop()
 
 		Serial.print(i);
 		Serial.print(",");
-		Serial.print(s->raw[0]);
+	/*	Serial.print(s->raw[0]);
 		Serial.print(",");
 		Serial.print(s->raw[1]);
 		Serial.print(",");
@@ -94,11 +97,12 @@ void loop()
 		Serial.print(",");
 		Serial.print(s->raw[3]);
 		Serial.print(",");
-		Serial.print((int)(p->xyz[0]*1000));
+	*/
+	  Serial.print((int)(p->xyz[0]*100));
 		Serial.print(",");
-		Serial.print((int)(p->xyz[1]*1000));
+		Serial.print((int)(p->xyz[1]*100));
 		Serial.print(",");
-		Serial.print((int)(p->xyz[2]*1000));
+		Serial.print((int)(p->xyz[2]*100));
 		Serial.print(",");
 		Serial.println(p->dist);
 	}
