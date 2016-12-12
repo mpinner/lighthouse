@@ -14,4 +14,4 @@ I used a few libraries for fun and profit:
 
 
 See more complete write-up here:
-[http://blog.crashspace.org/2016/12/diy-vive-blinkie/](http://blog.crashspace.org/2016/12/diy-vive-blinkie/)
+[https://blog.crashspace.org/2016/12/position-aware-device/](https://blog.crashspace.org/2016/12/position-aware-device/)
