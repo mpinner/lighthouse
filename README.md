@@ -1,8 +1,17 @@
-![Two Lighthouse beacons and a Teensy on a breadboard](https://farm8.static.flickr.com/7336/27747465696_948e961a4c.jpg)
+Arduino (Teensy) to interface with the HTC Vive
+Lighthouse beacons for positional light based fun.
 
-Arduino (Teensy) and Processng library to interface with the HTC Vive
-Lighthouse beacons.  Not fully functional yet.
+![image](https://c7.staticflickr.com/1/91/30694821654_52a88c412c_n.jpg)
 
-More info: https://trmm.net/Lighthouse
+This is a FORK to test a self positioning device based on the work from https://trmm.net/Lighthouse
 
 
+I used a few libraries for fun and profit: 
+
+   * [fastled](https://www.pjrc.com/teensy/td_libs_FastSPI_LED.html) : get your rainbow color mapping, color pallets switching, and brightness control.
+   * [ewma](https://github.com/CBMalloch/Arduino/tree/master/libraries/EWMA) : helps to color between positions while the sensors are often occluded
+   * [elapsedMillis](http://playground.arduino.cc/Code/ElapsedMillis) : slick way to fade out when device it not able to find the lighthouses
+
+
+See more complete write-up here:
+[http://blog.crashspace.org/2016/12/diy-vive-blinkie/](http://blog.crashspace.org/2016/12/diy-vive-blinkie/)
